@@ -3,12 +3,14 @@ import { gqlClient } from '../../graphql/client';
 import { GQL_MUTATION_UPDATE_POST } from '../../graphql/mutation/post';
 import { FormPost, StrapiPost } from '../../components/FormPost';
 import { Wrapper } from '../../components/Wrapper';
+import { useRouter } from 'next/dist/client/router';
 
 export type UpdatePostTemplateProps = {
   post: StrapiPost;
 };
 
 export function UpdatePostTemplate({ post }: UpdatePostTemplateProps) {
+  const router = useRouter();
   const [session] = useSession();
 
   const handleSave = async ({ id, title, content }) => {
@@ -24,9 +26,9 @@ export function UpdatePostTemplate({ post }: UpdatePostTemplateProps) {
           Authorization: `Bearer ${session.accessToken}`,
         },
       );
+      router.push('/posts');
     } catch (e) {
       alert('Erro ao salvar o post');
-      console.log(e);
     }
   };
 

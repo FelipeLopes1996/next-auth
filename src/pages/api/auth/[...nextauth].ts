@@ -9,6 +9,7 @@ type NextAuthSession = {
   jwt: string;
   name: string;
   email: string;
+  password: string;
   expiration: number;
 };
 
@@ -25,7 +26,7 @@ export default NextAuth({
     Providers.Credentials({
       name: 'Credentials',
       credentials: {},
-      async authorize(credentials) {
+      async authorize(credentials: NextAuthSession) {
         if (!credentials?.email || !credentials?.password) return null;
 
         try {
@@ -97,7 +98,7 @@ export default NextAuth({
 
       session.accessToken = token.jwt;
       session.user = {
-        id: token.id,
+        // id: token.id,
         name: token.name,
         email: token.email,
       };

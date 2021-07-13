@@ -18,7 +18,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   if (!session) {
     return serverSideRedirect(ctx);
   }
-
   return {
     props: {
       session,

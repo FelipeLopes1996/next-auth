@@ -1,10 +1,12 @@
-import { CloneMe } from '../../components/CloneMe'
-import * as Styled from './styles'
+import { useSession } from 'next-auth/client';
+import { Wrapper } from '../../components/Wrapper';
 
-export function Home() {
+export const HomeTemplate = () => {
+  const [session] = useSession();
+
   return (
-    <Styled.Wrapper>
-      <CloneMe title="Clone-me" />
-    </Styled.Wrapper>
+    <Wrapper>
+      <h1>Olá {session?.user?.name || 'ninguém'}</h1>
+    </Wrapper>
   );
-}
+};

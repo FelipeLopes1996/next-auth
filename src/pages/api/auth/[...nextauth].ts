@@ -25,7 +25,7 @@ export default NextAuth({
     Providers.Credentials({
       name: 'Credentials',
       credentials: {},
-      async authorize(credentials: any) {
+      async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null;
 
         try {
@@ -51,7 +51,6 @@ export default NextAuth({
             email,
           };
         } catch (e) {
-          // console.log(e);
           return null;
         }
       },
@@ -98,7 +97,7 @@ export default NextAuth({
 
       session.accessToken = token.jwt;
       session.user = {
-        // id: token.id,
+        id: token.id,
         name: token.name,
         email: token.email,
       };

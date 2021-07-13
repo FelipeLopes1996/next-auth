@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import NextAuth from 'next-auth';
 import Providers from 'next-auth/providers';
 import { gqlClient } from '../../../graphql/client';
@@ -8,7 +9,6 @@ type NextAuthSession = {
   jwt: string;
   name: string;
   email: string;
-  password: string;
   expiration: number;
 };
 
@@ -25,7 +25,7 @@ export default NextAuth({
     Providers.Credentials({
       name: 'Credentials',
       credentials: {},
-      async authorize(credentials: NextAuthSession) {
+      async authorize(credentials: any) {
         if (!credentials?.email || !credentials?.password) return null;
 
         try {

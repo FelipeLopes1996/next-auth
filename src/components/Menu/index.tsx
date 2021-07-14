@@ -34,6 +34,10 @@ export const Menu = () => {
         <a>create post</a>
       </Link>
 
+      <Link href="/open-route">
+        <a>open route</a>
+      </Link>
+
       {session ? (
         <a href="#" onClick={handleClick}>
           Sair
